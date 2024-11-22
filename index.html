@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emlékeztető & Jegyzetek</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V8Z"></path>
+                    <path d="M15 2v4"></path>
+                    <path d="M9 2v4"></path>
+                    <path d="M9 14h6"></path>
+                </svg>
+                Emlékeztető & Jegyzetek
+            </h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="grid">
+            <section class="reminders">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V8Z"></path>
+                        <path d="M15 2v4"></path>
+                        <path d="M9 2v4"></path>
+                        <path d="M9 14h6"></path>
+                    </svg>
+                    Emlékeztetők
+                </h2>
+
+                <div id="notification-permission" class="notification-banner hidden">
+                    <p>Az emlékeztetők működéséhez engedélyezni kell az értesítéseket.</p>
+                    <button onclick="requestNotificationPermission()">Értesítések engedélyezése</button>
+                </div>
+
+                <button id="new-reminder-btn" class="primary-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 5v14"></path>
+                        <path d="M5 12h14"></path>
+                    </svg>
+                    Új emlékeztető
+                </button>
+
+                <form id="reminder-form" class="hidden">
+                    <div class="form-group">
+                        <label for="title">Cím</label>
+                        <input type="text" id="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Leírás</label>
+                        <textarea id="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="datetime">Időpont</label>
+                        <input type="datetime-local" id="datetime" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="primary-button">Mentés</button>
+                        <button type="button" class="secondary-button" onclick="toggleReminderForm()">Mégse</button>
+                    </div>
+                </form>
+
+                <div id="reminders-list" class="cards-container"></div>
+            </section>
+
+            <section class="notes">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 12h6"></path>
+                        <path d="M9 16h6"></path>
+                        <path d="M12 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    </svg>
+                    Jegyzetek
+                </h2>
+
+                <form id="note-form">
+                    <div class="form-group">
+                        <textarea id="note-content" rows="3" placeholder="Írj egy új jegyzetet..."></textarea>
+                    </div>
+                    <button type="submit" class="primary-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Mentés
+                    </button>
+                </form>
+
+                <div id="notes-list" class="cards-container"></div>
+            </section>
+        </div>
+    </main>
+
+    <audio id="notification-sound" preload="auto">
+        <source src="data:audio/wav;base64,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" type="audio/wav">
+    </audio>
+
+    <script src="app.js"></script>
+</body>
+</html>
