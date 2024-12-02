@@ -9,6 +9,7 @@ import type { Dispatcher } from './types';
 
 function App() {
   const { currentDispatcher, setDispatcher } = useStore();
+  const emailBody = `Szia Gábor!\n\nFeladatlap csatolva.\n\n${currentDispatcher}.`;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -86,7 +87,7 @@ function App() {
             </div>
             <div className="col-span-2 flex justify-end mt-4">
               <a
-                href={`https://outlook.office.com/mail/deeplink/compose?to=vegh@oktel.hu&subject=${encodeURIComponent('Feladatlap')}&body=${encodeURIComponent('Szia Gábor!\n\nFeladatlap csatolva.\n\nKornél.')}`}
+                href={`https://outlook.office.com/mail/deeplink/compose?to=vegh@oktel.hu&subject=${encodeURIComponent('Feladatlap')}&body=${encodeURIComponent(emailBody)}`}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
