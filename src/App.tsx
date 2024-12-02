@@ -88,7 +88,7 @@ function App() {
               <a
                 href={`https://outlook.office.com/mail/deeplink/compose?to=vegh@oktel.hu&subject=${encodeURIComponent('Feladatlap')}&body=${encodeURIComponent('Szia Gábor!\n\nFeladatlap csatolva.\n\nKornél.')}`}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 <Mail size={20} />
